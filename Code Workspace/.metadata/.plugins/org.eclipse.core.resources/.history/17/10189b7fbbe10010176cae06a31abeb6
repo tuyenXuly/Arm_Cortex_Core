@@ -27,8 +27,6 @@ void task2_handler(void); // This is task 2
 void task3_handler(void); // This is task 3
 void task4_handler(void); // This is task 4
 
-void init_systick_timer(uint32_t tick_hz);
-
 #define SIZE_TASK_STACK        1024U
 #define SIZE_SCHED_STACK       1024U
 
@@ -42,13 +40,10 @@ void init_systick_timer(uint32_t tick_hz);
 #define T4_STACK_START          ( (SRAM_END) - (3 * SIZE_TASK_STACK) )
 #define SCHED_STACK_START       ( (SRAM_END) - (4 * SIZE_TASK_STACK) )
 
-#define TICK_HZ   			1000U
-#define HSI_CLOCK  			16000000U
-#define SYSTICK_TIM_CLK     HSI_CLOCK
 
 int main(void)
 {
-    init_systick_timer(TICK_HZ);
+    /* Loop forever */
 	for(;;);
 }
 
@@ -78,9 +73,4 @@ void task4_handler(void)
 	while(1){
 		printf("This is task 4\n");
 	}
-}
-
-void init_systick_timer(uint32_t tick_hz)
-{
-	uint32_t count_value = SYTICK_TIM_CLK/tick_hz;
 }
